@@ -36,7 +36,7 @@ public class SecurityCandidateFilter extends OncePerRequestFilter {
 
                 request.setAttribute("candidate_id", token.getSubject());
                 System.out.println("=====toKEN=====");
-                System.out.println(token);
+                System.out.println(token.getClaim("roles"));
             }
         }
 
