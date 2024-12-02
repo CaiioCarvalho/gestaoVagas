@@ -1,4 +1,4 @@
-package br.com.caiocarvalho.gestao_vagas;
+package br.com.caiocarvalho.gestao_vagas.modules.candidate.useCases;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
