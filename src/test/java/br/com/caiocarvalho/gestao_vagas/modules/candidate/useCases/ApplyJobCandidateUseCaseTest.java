@@ -1,5 +1,7 @@
 package br.com.caiocarvalho.gestao_vagas.modules.candidate.useCases;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
@@ -73,12 +75,16 @@ public class ApplyJobCandidateUseCaseTest {
         .candidateId(idCandidate)
         .jobId(idJob).build();
 
+        var applyJobCreated = ApplyJobEntity.builder()
+        .id(UUID.randomUUID()).build();
+
         when(candidateRepository.findById(idCandidate)).thenReturn(Optional.of(new CandidateEntity()));
         when(jobRepository.findById(idJob)).thenReturn(Optional.of(new JobEntity()));
-        when(applyJobRepository.save(applyJob)).thenReturn(new ApplyJobEntity());
+        when(applyJobRepository.save(applyJob)).thenReturn(applyJobCreated);
 
         var result = applyJobCandidateUseCase.execute(idCandidate, idJob);
 
         Assertions.assertThat(result).hasFieldOrProperty("id");
+        assertNotNull(result.getId());
     }
 }
